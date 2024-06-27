@@ -1,9 +1,23 @@
 # Clone the repository
 - ### The below command is used to clone the repo
 ```
-https://github.com/ranjitha-chandraban/recipes-etl-1.git
+https://github.com/ranjitha-chandraban/recipes_processing_etl.git
 ```
 - ## Step 1: Navigate to the dags directory
 ```
-cd path/to/recipes_processing
+cd ./recipes_processing_etl
 ```
+- ## Step 2: Run Docker Compose
+```
+docker-compose -f docker_compose.yml up -d
+```
+This command will start the Docker containers defined in your docker_compose.yml file. The -d flag runs the containers in detached mode.
+- ## Step 3: Access Airflow Web UI Open your web browser and go to the specified URL
+```
+http://localhost:8080
+```
+- ## Step 4: Log In to Airflow Use the credentials:
+•	Username: admin
+•	Password: admin
+
+
