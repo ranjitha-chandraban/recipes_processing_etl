@@ -1,0 +1,16 @@
+cust_name: hellofresh
+is_versioned_dir: true
+data_process:
+  serial_ops:
+  - input:
+      name: recipes-000.parquet
+    output: processed_df
+    operations:
+    - operation: pattern_matching_rows
+      kwargs:
+        column_name: 'ingredients'
+        pattern: r'(?i)\bbeef\b'
+    - operation: agg
+      kwargs:
+        new_column: 'Difficulty'
+        column_name: 'totalminutes'

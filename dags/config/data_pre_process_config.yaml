@@ -1,0 +1,29 @@
+cust_name: hellofresh
+is_versioned_dir: true
+data_prep_process:
+  serial_ops:
+  - input:
+      name: recipes-000.json
+    output: pre_process.parquet
+    operations:
+    - operation: to_convert_into_minutes
+      kwargs:
+        column_name: 'cookTime'
+    - operation: to_convert_into_minutes
+      kwargs:
+        column_name: 'prepTime'
+    - operation: to_convert_into_minutes
+      kwargs:
+        column_name: 'prepTime'
+    - operation: total_time
+      kwargs:
+        operand_cols:
+        - cookTimetotalminutes
+        - prepTimetotalminutes
+        output_col: totalminutes
+    - operation: add_difficult_level
+      kwargs:
+        new_column: 'Difficulty'
+        column_name: 'totalminutes'
+        min_range: 30
+        max_range: 60

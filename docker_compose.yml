@@ -1,0 +1,65 @@
+
+# The Docker Compose YAML file for Hello Fresh coding challenge
+
+services:
+  # Service name
+  hello-fresh:
+    
+    # Set this to true, else container will keep stopping if there is nothing to 
+    # run after the container is started
+    container_name: hellofresh_cont
+
+    tty: true
+    build: 
+      # Path to Dockerfile relative to this file
+      context: .
+      dockerfile: Dockerfile
+    
+    # After the image is built, it is tagged with this name
+    image: hellofresh_image
+    
+    # Shared memory size for the container
+    shm_size: 4g
+    
+    # Range of ports to be exposed when replica mode is enabled
+    # Only 1 port is exposed when replica mode is disabled
+    ports:
+      - "8080:8080"
+    
+    # Create bind mounts for the following directories
+    # volumes:
+    #   - type: bind
+    #     source: ./dags/output/
+    #     target: /opt/airflow/dags/output/
+
+    deploy:
+      mode: replicated
+      replicas: 1
+      
+      # Restart policy when container exits with non-zero exit code/abruptly
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+      # # Expose GPU to the container. This will only work with Docker Compose version
+      # # 1.28.0 or higher. Comment out this section if you are using an older version
+      # # or if you don't have a GPU or if you don't want to use GPU.
+      # resources:
+      #   reservations:
+      #     devices:
+      #       - driver: nvidia
+      #         capabilities: ["gpu"]
+      #         device_ids: ["0"] # ["0", "1", "2", "3"]
+
+      # Policy for updating the container
+      update_config:
+        parallelism: 1
+        delay: 30s
+        failure_action: rollback
+      
+      # Policy for rolling back the container to last stable version
+      rollback_config:
+        parallelism: 1
+        delay: 20s
