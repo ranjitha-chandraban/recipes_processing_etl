@@ -1,4 +1,4 @@
-# Clone the repository
+# HelloFresh
 - ### The below command is used to clone the repo
 ```
 https://github.com/ranjitha-chandraban/recipes_processing_etl.git
@@ -19,8 +19,15 @@ http://localhost:8080
 - ##### Step 4: Log In to Airflow Use the credentials:
 Username: admin
 Password: admin
-- ##### Step 5: Navigate to the DAG
-On the Airflow web UI, find the DAG named data_processing_dag in the list of DAGs. Click on the DAG name to open the DAG details page.
+- ##### Step 5: Find and Execute the DAG
+5.1 On the Airflow web UI, find the DAG named "data_processing_dag" in the list of DAGs.
+5.2 On the DAG details page, click the "Trigger DAG" button (typically represented by a play icon) to start the DAG execution. 
+5.3 Click on the DAG name to open the DAG details page to monitor the progress of each task in the DAG graph view. If a task fails, it will be marked as failed, and you can click on the task to view the logs and diagnose the issue.
+
+
+
+
+
 
 
 
