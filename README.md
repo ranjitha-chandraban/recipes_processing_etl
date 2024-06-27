@@ -19,7 +19,7 @@ http://localhost:8080
 - ##### Step 4: Log In to Airflow Use the credentials:
 Username: admin
 Password: admin
-- #### Step 5: Navigate to the DAG
+- ##### Step 5: Navigate to the DAG
 On the Airflow web UI, find the DAG named data_processing_dag in the list of DAGs. Click on the DAG name to open the DAG details page.
 
 
